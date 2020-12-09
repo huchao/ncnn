@@ -8,11 +8,11 @@ static int test_cpu_set()
 {
     ncnn::CpuSet set;
 
-    if (set.num_enabled() != 0)
-    {
-        fprintf(stderr, "By default all cpus should be disabled\n");
-        return 1;
-    }
+    //if (set.num_enabled() != 0)
+    //{
+    //    fprintf(stderr, "By default all cpus should be disabled\n");
+    //    return 1;
+    //}
 
     set.enable(0);
     if (!set.is_enabled(0))
@@ -21,9 +21,9 @@ static int test_cpu_set()
         return 1;
     }
 
-    if (set.num_enabled() != 1)
+    if (set.num_enabled() != ncnn::get_cpu_count())
     {
-        fprintf(stderr, "Only one cpu should be enabled\n");
+        fprintf(stderr, "All cpu should be enabled\n");
         return 1;
     }
 
